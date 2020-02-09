@@ -1,0 +1,23 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: docker-compose
+      run: |
+        docker-compose build
+        docker-compose up -d elasticsearch
+        sleep 30
+        docker-compose up -d
+        docker-compose ps
+        docker-compose logs elasticsearch
+        docker-compose logs kibana
+        docker-compose logs logstash
+        docker-compose down -v
