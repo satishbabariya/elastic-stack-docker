@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM alpine:3.11
 
 ENV CURATOR_VERSION=5.8.1
 
