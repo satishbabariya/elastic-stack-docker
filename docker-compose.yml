@@ -66,6 +66,24 @@ services:
       - elk
     depends_on:
       - elasticsearch
+   
+  apm-server:
+    build:
+      context: extensions/apm-server/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    ports:
+      - "8200:8200"
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+    command: [
+        "apm-server", 
+        "-e", 
+        "-E", "output.elasticsearch.username=elastic", 
+        "-E", "output.elasticsearch.password=changeme", 
+    ]
 
 networks:
   elk:
