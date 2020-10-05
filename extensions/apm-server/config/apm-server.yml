@@ -1,8 +1,27 @@
 apm-server:
-  host: 0.0.0.0:8200
+  host: "0.0.0.0:8200"
+  concurrent_requests: 5
+  rum:
+    enabled: true
+    
+queue.mem.events: 4096
+max_procs: 4
 
+setup:
+  kibana:
+    host: "kibana:5601"
+  dashboards:
+    enabled: true
+
+logging:
+  level: info
+  to_files: false
+  
 output:
   elasticsearch:
-    hosts: ['http://elasticsearch:9200']
-    username: elastic
-    password: changeme
+    hosts: ['elasticsearch:9200']
+    protocol: "http"
+    username: "elastic"
+    password: "changeme"
+    ssl.enabled: false
+
